@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pizza Wok</title>
+    <link th:href="@{/styles/style.css}" rel='stylesheet' type='text/css'>
+    <script th:src="@{/scripts/menu.js}"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="header_and_main_div">
+
+        <header th:insert="~{fragments/header :: header1}"></header>
+
+        <main>
+            <div class="main_content">
+                <h1 class="order_complete_h1">Заказ оформлен!</h1>
+                <p class="oc_description">В ближайшее время Вам позвонят, для подтверждения заказа.</p>
+                <p class="oc_img_wrapper"><img class="oc_img" th:src="@{/images/interface/check_mark.png}"/><p>
+                <p>P.S. никто Вам не позвонит, забудьте</p>
+            </div>
+        </main>
+
+    </div>
+
+    <footer th:insert="~{fragments/footer :: footer1}"></footer>
+
+</div>
+
+</body>
+</html>

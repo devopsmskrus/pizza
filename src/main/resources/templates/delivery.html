@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pizza Wok</title>
+    <link th:href="@{/styles/style.css}" rel='stylesheet' type='text/css'>
+    <script th:src="@{/scripts/menu.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script th:src="@{/scripts/jquery.mask.js}"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="header_and_main_div">
+
+        <header th:insert="~{fragments/header :: header1}"></header>
+
+        <main>
+            <div class="main_content">
+                <h1 class="address_h1">Доставка</h1>
+                <form th:object="${order}" th:action="@{/cart/delivery}" method="post">
+                    <div class="address_form">
+                        <div class="af_customer_block">
+                            <div class="input_element">
+                                <p>Номер:</p>
+                                <input class="input_customer_phone" th:value="*{customerPhone}" type="tel" name="customerPhone" placeholder="+7 XXX XXX XX XX"/>
+                                <p class="input_error_msg" th:if="${#fields.hasErrors('customerPhone')}" th:errors="*{customerPhone}">Incorrect</p>
+                                <script type="text/javascript">
+                                    $('.input_customer_phone').mask('+7 000 000 00 00');
+                                </script>
+                            </div>
+                            <div class="input_element">
+                                <p>Имя:</p>
+                                <input type="text" th:value="*{customerName}" name="customerName"/>
+                                <p class="input_error_msg" th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}">Incorrect</p>
+                            </div>
+                        </div>
+                        <div class="input_element">
+                            <p>Адрес:</p>
+                            <input type="text" th:value="*{address.address}" name="address.address"/>
+                            <p class="input_error_msg" th:if="${#fields.hasErrors('address.address')}" th:errors="${order.address.address}">Incorrect</p>
+                        </div>
+                        <div class="af_address_block">
+                            <div class="input_element">
+                                <p>Подъезд:</p>
+                                <input type="number" th:value="*{address.frontDoor}" name="address.frontDoor"/>
+                            </div>
+                            <div class="input_element">
+                                <p>Этаж:</p>
+                                <input type="number" th:value="*{address.floor}" name="address.floor"/>
+                            </div>
+                            <div class="input_element">
+                                <p>Квартира:</p>
+                                <input type="number" th:value="*{address.apartment}" name="address.apartment"/>
+                            </div>
+                        </div>
+                        <div class="input_element">
+                            <p>Комментарий: </p>
+                            <textarea th:text="*{comment}" name="comment"></textarea>
+                        </div>
+                        <input value="заказать" type="submit"/>
+                        <p class="submit_error_msg" th:if="${#fields.hasAnyErrors()}">Ошибки в заполнении формы заказа. Исправьте и попробуйте снова</p>
+                    </div>
+
+                </form>
+            </div>
+        </main>
+
+    </div>
+
+    <footer th:insert="~{fragments/footer :: footer1}"></footer>
+
+</div>
+
+</body>
+</html>

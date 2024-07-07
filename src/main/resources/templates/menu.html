@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pizza Wok</title>
+    <link th:href="@{/styles/style.css}" rel='stylesheet' type='text/css'>
+    <script th:src="@{/scripts/menu.js}"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="header_and_main_div">
+
+        <header th:insert="~{fragments/header :: header1}"></header>
+
+        <main>
+            <div class="dish_menu">
+                <div th:id="${dish.id}" class="dish_card" th:each="dish : ${dishes}">
+                    <div class="dish_card_main_block">
+                        <img class="dish_img" th:src="@{${'/images/content/dishes/' + dish.image}}">
+                            <p class="dish_name" th:text="${dish.name}">Название блюда</p>
+                            <p class="dish_description" th:text="${dish.description}">Описание блюда</p>
+                    </div>
+                    <div class="dish_card_footer_block">
+                        <p class="dish_card_price" th:text="${dish.price} + ' р'">Цена</p>
+                        <div class="dish_card_buttons_block">
+                            <button th:unless="${dishCountInOrderById.containsKey(dish.id)}" class="dish_plus_button_long"
+                                    th:attr="onclick=|document.location='@{/menu/add/__${dish.id}__(menuSection=${menuSection})}'|">
+                                + добавить
+                            </button>
+                            <th:block th:if="${dishCountInOrderById.containsKey(dish.id)}">
+                                <button class="dish_minus_button_short"
+                                        th:attr="onclick=|document.location='@{/menu/delete/__${dish.id}__(menuSection=${menuSection})}'|">
+                                    -
+                                </button>
+
+                                <p class="dish_card_count" th:text="${dishCountInOrderById.get(dish.id)}"> 0 </p>
+
+                                <button class="dish_plus_button_short"
+                                        th:attr="onclick=|document.location='@{/menu/add/__${dish.id}__(menuSection=${menuSection})}'|">
+                                    +
+                                </button>
+                            </th:block>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <footer th:insert="~{fragments/footer :: footer1}"></footer>
+
+</div>
+
+</body>
+</html>

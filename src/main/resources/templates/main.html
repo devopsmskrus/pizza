@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pizza Wok</title>
+    <link th:href="@{/styles/style.css}" rel='stylesheet' type='text/css'></link>
+</head>
+<body>
+<div class="wrapper">
+    <div class="header_and_main_div">
+
+        <header th:insert="~{fragments/header :: header1}"></header>
+
+        <main>
+            <div class="main_content">
+                <h1 class="main_h1">Добро пожаловать в Pizzawok!</h1>
+                <h2 class="main_h2">
+                    Pizzawok - это самая вымышленная сеть ресторанов России. Убедитесь сами!
+                    Выберите блюда из нашего разнообразного меню, которое вовсе не было скопировано из
+                    другой популярной сети ресторанов с похожим названием. Оформите заказ с доставкой и
+                    Вы увидите, как ничего не произойдет. Мы ценим своих клиентов. Мы рады и благодарны, что Вы выбрали Pizzawok!
+                </h2>
+                <h3 class="main_h3">Наше меню</h3>
+                <div class="main_menu">
+                    <a class="main_menu_button" th:href="@{/menu(menuSection='pizza')}">
+                        <img class="main_menu_button_img" th:src="@{/images/interface/main_menu_pizza.png}">
+                        <p class="main_menu_button_description">Пицца</p>
+                    </a>
+                    <a class="main_menu_button" th:href="@{/menu(menuSection='wok')}">
+                        <img class="main_menu_button_img" th:src="@{/images/interface/main_menu_wok.png}">
+                        <p class="main_menu_button_description">Вок</p>
+                    </a>
+                    <a class="main_menu_button" th:href="@{/menu(menuSection='roll')}">
+                        <img class="main_menu_button_img" th:src="@{/images/interface/main_menu_roll.png}">
+                        <p class="main_menu_button_description">Ролл</p>
+                    </a>
+                </div>
+                <hr>
+                <div class="additional_info">
+                    <div class="additional_info_card">
+                        <img class="additional_info_img" th:src="@{/images/interface/github.png}">
+                        <p class="additional_info_description">Исходный код данного сайта можно посмотреть на <a href="https://github.com/devopsmskrus/pizzawok">github</a></p>
+                    </div>
+                    <div class="additional_info_card">
+                        <img class="additional_info_img" th:src="@{/images/interface/gorbachev.png}">
+                        <p class="additional_info_description">"Если вы не работодатель в поисках талантливого начинающего web-разработчика, то пошли вон отсюдова" - Горбачев И.Н.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <footer th:insert="~{fragments/footer :: footer1}"></footer>
+
+</div>
+
+</body>
+</html>
